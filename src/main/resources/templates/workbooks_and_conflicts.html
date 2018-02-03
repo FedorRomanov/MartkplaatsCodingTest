@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>WorkBook</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h1>Workbook2.csv</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Postcode</th>
+        <th>Phone</th>
+        <th>Credit Limit</th>
+        <th>Birthday</th>
+    </tr>
+    <tr th:each="loaner : ${cvsLoaners}">
+        <td th:text="${loaner.name}"></td>
+        <td th:text="${loaner.address}"></td>
+        <td th:text="${loaner.postcode}"></td>
+        <td th:text="${loaner.phone}"></td>
+        <td th:text="${loaner.creditLimit}"></td>
+        <td th:text="${loaner.birthday}"></td>
+    </tr>
+</table>
+<h1>Workbook2.prn</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Postcode</th>
+        <th>Phone</th>
+        <th>Credit Limit</th>
+        <th>Birthday</th>
+    </tr>
+    <tr th:each="loaner : ${prnLoaners}">
+        <td th:text="${loaner.name}"></td>
+        <td th:text="${loaner.address}"></td>
+        <td th:text="${loaner.postcode}"></td>
+        <td th:text="${loaner.phone}"></td>
+        <td th:text="${loaner.creditLimit}"></td>
+        <td th:text="${loaner.birthday}"></td>
+    </tr>
+</table>
+
+<h1>Loaners With Credit Limit Conflict</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Postcode</th>
+        <th>Phone</th>
+        <th>Birthday</th>
+        <th><font color="red">Credit Limit Conflict</font></th>
+    </tr>
+    <tr th:each="conflict : ${conflicts}">
+        <td th:text="${conflict.loaner.name}"></td>
+        <td th:text="${conflict.loaner.address}"></td>
+        <td th:text="${conflict.loaner.postcode}"></td>
+        <td th:text="${conflict.loaner.phone}"></td>
+        <td th:text="${conflict.loaner.birthday}"></td>
+        <td th:style="${'color:red'}" th:text="${conflict.workbookOrigin} + '=' + ${conflict.creditLimit} + ', ' + ${conflict.conflictingWorkbookOrigin} + '=' + ${conflict.conflictingCreditLimit}"></td>
+    </tr>
+</table>
+</body>
+</html>
